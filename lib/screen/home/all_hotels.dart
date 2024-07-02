@@ -29,6 +29,7 @@ class AllHotels extends StatelessWidget {
             itemBuilder: (context, index) {
               return HotelGridView(
                 hotelDetail: hotelList[index],
+                index: index,
               );
             }),
       ),
@@ -38,13 +39,17 @@ class AllHotels extends StatelessWidget {
 
 class HotelGridView extends StatelessWidget {
   final Map<String, dynamic> hotelDetail;
-  const HotelGridView({super.key, required this.hotelDetail});
+  final int index;
+  const HotelGridView({super.key, required this.hotelDetail, required this.index});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, AppRoute.hotelDetailScreen);
+        Navigator.pushNamed(context, AppRoute.hotelDetailScreen,arguments: {
+          'index':index
+        });
+        debugPrint("=========Hello");
       },
       child: Container(
         padding: const EdgeInsets.all(8.0),
